@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="rodando.css">
+    
+    
+    <title>Rodando o Banco</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Enviando dados ao banco</h1>
+        <form>
+       <input type="text" name="nome" size="20" placeholder="Digite seu nome">
+       <br>
+         <input type="email" name="email" size="20" placeholder="Digite seu email">
+        <br>
+        <input type="password" name="senha" maxlength="10" placeholder="Digite sua senha">
+        <br>
+        <button type="submit">Enviar ao banco de dados </button>
+        </form>
+        <div class="response">
+            <h2>Recebendo informações do banco:</h2>
+            
+            <button type="button">Buscar dados do banco de dados</button>
+<div id="listaClientes"></div>
+        </div>
+    </div>
+    <script src="serverbanco.js"></script>
+    <script src="server.js"></script>
+</body>
+</html>

@@ -7,7 +7,8 @@ form.addEventListener('submit', async (e) => {
     const dados = {
         nome: form.querySelector('input[name="nome"]').value,
         email: form.querySelector('input[name="email"]').value,
-        senha: form.querySelector('input[name="senha"]').value
+        senha: form.querySelector('input[name="senha"]').value,
+        telefone: form.querySelector('input[name="telefone"]').value
     };
 
     try {
@@ -42,7 +43,7 @@ btnBuscar.addEventListener('click', async () => {
     lista.innerHTML = '';
     dados.forEach(cliente => {
         const item = document.createElement('p');
-        item.textContent = `Nome: ${cliente.nome} ||    Email: ${cliente.email}`;
+        item.textContent = `Nome: ${cliente.nome} ||    Email: ${cliente.email} ||  Telefone: ${cliente.telefone}`;
         lista.appendChild(item);
     });
 });

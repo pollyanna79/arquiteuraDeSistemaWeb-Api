@@ -1,22 +1,48 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="rodando.css">
-    
-    
-    <title>Buscando informações de Tabela </title>
-</head>
-<body>
-     <div id="container">
-        <h1>Buscando dados do banco estoque</h1>
-<button id ='mercearia'>Produtos</button>
-
-             </div>
-             <div id="produtos_mercearia"></div>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="rodando.css">
+        
+        
+        <title>Buscando informações de Tabela </title>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Buscando dados do banco estoque</h1>
+            <div>
+       
+    <button id ='mercearia'>Mercearia</button>
+    <button id='limpar_mercearia' class='btn-limpar'>Limpar</button>
+    <div id="list_mercearia"></div>
+                </div>
+                <div>
              
-    <script src="serverbancoestoque.js"></script>
-    <script src="serverestoque.js"></script>
-</body>
-</html>
+                <button id="produtos_dph">Dph</button>
+                <button id='limpar_dph' class='btn-limpar'>Limpar</button>
+                <div id="list_dph"></div>
+                          <div>
+       
+    <button id ='laticinios'>Laticínios</button>
+    <button id='limpar_laticinios' class='btn-limpar'>Limpar</button>
+    <div id="list_laticinios"></div>
+                </div>
+                <form id="Cadastro-estoque">
+                <input type="text" name="descricao" placeholder="Informe o nome do produto: ">
+                <br>
+                <input type="number" name="quantidade" placeholder="Informe a quantidade: ">
+                <br>
+                 <input type="text" name="valor" inputmode="decimal" placeholder=" Informe o preço R$ 0,00">
+                <br>
+                 <input type="text" name="secao" placeholder="Informe a Seção: ">
+                <br>
+               <button type="submit">Enviar Dados</button>
+
+                </form>
+                </div>
+                <script src="estoque.js"></script>
+
+                </body>
+        
+    </html>

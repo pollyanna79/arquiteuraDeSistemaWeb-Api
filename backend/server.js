@@ -20,6 +20,7 @@ db.connect((err) => {
 });
 
 
+
 // Rota de Inserção (Cria a ponte de envio)
 app.post('/clientes', (req, res) => {
     const { nome, email, senha, telefone } = req.body;

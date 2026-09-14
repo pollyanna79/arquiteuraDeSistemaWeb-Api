@@ -17,19 +17,37 @@ const db = mysql.createConnection({
     queueLimit: 0
 });
 
-db.connect((err) => {
-    if (err) throw err;
-    console.log("Conectado ao Banco de Dados!");
-});
+
 
 // Rota de Consulta (Cria a ponte de retorno)
+// Rota para buscar produtos de mercearia
 app.get('/produtos', (req, res) => {
-    db.query("SELECT produto , valor FROM produtos", (err, result) => {
-        if (err) {
-            console.error('Erro na query:', err);
-            return res.status(500).send('Erro ao buscar produtos');
-        }
+    db.query("SELECT descricao, quantidade, valor FROM produtos WHERE secao = 'mercearia'", (err, result) => {
+        if (err) return res.status(500).send('Erro ao buscar');
         res.json(result);
+    });
+});
+
+// Rota para buscar produtos de DPH (usando a coluna 'secao' que está no seu Workbench)
+app.get('/dph', (req, res) => {
+    db.query("SELECT descricao, quantidade, valor FROM produtos WHERE secao = 'dph'", (err, result) => {
+        if (err) return res.status(500).send('Erro ao buscar');
+        res.json(result);
+    });
+});
+app.get('/laticinios', (req, res) => {
+    db.query("SELECT descricao, quantidade, valor FROM produtos WHERE secao LIKE '%laticin%' OR secao LIKE '%Laticínios%'", (err, result) => {
+        if (err) return res.status(500).send('Erro ao buscar');
+        res.json(result);
+    });
+});
+app.post('/produtos', (req, res)=>{
+    const{descricao,quantidade,valor,secao}= req.body;
+    console.log("Dados recebidos com sucesso!");
+    const sql = "Insert into produtos(descricao,quantidade,valor,secao)Values(?,?,?,?)";
+    db.query(sql,[descricao,quantidade,valor,secao],(err,result)=>{
+        if(err)return res.status(500).send(err);
+        res.send("Cadastro realizado com sucesso!")
     });
 });
 app.listen(3001, () => console.log('Servidor rodando na porta 3001'));

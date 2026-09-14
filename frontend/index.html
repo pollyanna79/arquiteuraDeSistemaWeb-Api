@@ -11,25 +11,76 @@
 <body>
     <div class="container">
         <h1>Enviando dados ao banco</h1>
-        <form>
-       <input type="text" name="nome" size="20" placeholder="Digite seu nome">
+        <form id="meuFormulario">
+       <input type="text" id="nome" name="nome" size="30" placeholder="Digite seu nome">
        <br>
-         <input type="email" name="email" size="20" placeholder="Digite seu email">
+         <input type="email" id="email" name="email" size="30" placeholder="Digite seu email">
         <br>
-        <input type="password" name="senha" maxlength="10" placeholder="Digite sua senha">
+        <input type="password" id="senha" name="senha" maxlength="12" placeholder="Digite sua senha">
         <br>
-        <input type="number" name="telefone" maxlength="13" placeholder="Digite seu telefone">
+        <input type="number" id="telefone" name="telefone" maxlength="13" placeholder="Digite seu telefone">
         <br>
         <button type="submit">Enviar ao banco de dados </button>
         </form>
         <div class="response">
             <h2>Recebendo informações do banco:</h2>
             
-            <button type="button">Buscar dados do banco de dados</button>
-<div id="listaClientes"></div>
+          <button type="button" id="btnBuscar">Buscar dados do banco de dados</button>
+            <div id="listaClientes"></div>
         </div>
     </div>
-    <script src="serverbanco.js"></script>
-    <script src="server.js"></script>
+   
+    <!-- Script do Front-end (Faz a ponte correta com o seu server.js) -->
+    <script>
+        const formulario = document.getElementById('meuFormulario');
+        const btnBuscar = document.getElementById('btnBuscar');
+        const divLista = document.getElementById('listaClientes');
+
+        // 1. Envia os dados para a rota POST /clientes do seu server.js
+        formulario.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede a página de recarregar
+
+            const dadosCliente = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                senha: document.getElementById('senha').value,
+                telefone: document.getElementById('telefone').value
+            };
+
+            try {
+                const resposta = await fetch('http://localhost:3000/clientes', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dadosCliente)
+                });
+
+                const mensagem = await resposta.text();
+                alert(mensagem); // Deve mostrar "Cadastrado com sucesso"
+                formulario.reset(); // Limpa os campos
+            } catch (erro) {
+                console.error("Erro ao enviar:", erro);
+                alert("Erro ao conectar com o servidor.");
+            }
+        });
+
+        // 2. Busca os dados da rota GET /clientes do seu server.js
+        btnBuscar.addEventListener('click', async () => {
+            try {
+                const resposta = await fetch('http://localhost:3000/clientes');
+                const clientes = await resposta.json();
+
+                // Limpa a lista anterior e desenha os clientes na tela
+                divLista.innerHTML = '';
+                clientes.forEach(cli => {
+                    divLista.innerHTML += `<p><strong>Nome:</strong> ${cli.nome} - <strong>E-mail:</strong> ${cli.email}</p>`;
+                });
+            } catch (erro) {
+                console.error("Erro ao buscar:", erro);
+                alert("Erro ao buscar dados.");
+            }
+        });
+    </script>
 </body>
 </html>

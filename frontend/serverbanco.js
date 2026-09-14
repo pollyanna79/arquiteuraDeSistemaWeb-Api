@@ -1,5 +1,5 @@
 // Captura o formulário pelo elemento
-const form = document.querySelector('form');
+const form = document.getElementById('meuFormulario');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();

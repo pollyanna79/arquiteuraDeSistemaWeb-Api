@@ -1,6 +1,7 @@
 // Captura o formulário pelo elemento
 const form = document.getElementById('meuFormulario');
-
+const lista = document.querySelector('#corpo-tabela');
+const btnLimparlista = document.getElementById('limpaLista');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -29,11 +30,13 @@ form.addEventListener('submit', async (e) => {
         alert('Erro de conexão com o servidor');
     }
 });
-
+btnLimparlista.addEventListener('click', () => {
+    lista.innerHTML = '';
+});
 
 // 2. Buscando dados (GET)
 const btnBuscar = document.querySelector('button[type="button"]'); //Identificando o Botão que vai solicitar a informação ao banco
-const lista = document.querySelector('#listaClientes'); // Identificando a tag que vai armazenar os dados que vem do banco//
+ // Identificando a tag que vai armazenar os dados que vem do banco//
 //função que vai tazer e formatar a informação //
 btnBuscar.addEventListener('click', async () => {
     const resposta = await fetch('http://localhost:3000/clientes');
@@ -41,9 +44,17 @@ btnBuscar.addEventListener('click', async () => {
 
     // Limpa a lista antes de adicionar novos dados
     lista.innerHTML = '';
+    const tbody = document.getElementById('corpo-tabela');
     dados.forEach(cliente => {
-        const item = document.createElement('p');
-        item.textContent = `Nome: ${cliente.nome} ||    Email: ${cliente.email} ||  Telefone: ${cliente.telefone}`;
-        lista.appendChild(item);
-    });
+const tr = document.createElement('tr');
+
+    tr.innerHTML = `
+        <td>${cliente.nome}</td>
+        <td>${cliente.email}</td>
+        <td>${cliente.telefone}</td>
+    `;
+
+    tbody.appendChild(tr);
+});
+      
 });

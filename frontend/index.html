@@ -27,60 +27,23 @@
             
           <button type="button" id="btnBuscar">Buscar dados do banco de dados</button>
             <div id="listaClientes"></div>
+            <table id="tabelaclientes">
+                <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+        </tr>
+    </thead>
+ <tbody id="corpo-tabela">
+        <!-- As linhas do JavaScript vão entrar aqui automaticamente -->
+    </tbody>
+            </table>
+            <button id ="limpaLista">Limpar Dados</button>
         </div>
     </div>
    
-    <!-- Script do Front-end (Faz a ponte correta com o seu server.js) -->
-    <script>
-        const formulario = document.getElementById('meuFormulario');
-        const btnBuscar = document.getElementById('btnBuscar');
-        const divLista = document.getElementById('listaClientes');
-
-        // 1. Envia os dados para a rota POST /clientes do seu server.js
-        formulario.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Impede a página de recarregar
-
-            const dadosCliente = {
-                nome: document.getElementById('nome').value,
-                email: document.getElementById('email').value,
-                senha: document.getElementById('senha').value,
-                telefone: document.getElementById('telefone').value
-            };
-
-            try {
-                const resposta = await fetch('http://localhost:3000/clientes', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(dadosCliente)
-                });
-
-                const mensagem = await resposta.text();
-                alert(mensagem); // Deve mostrar "Cadastrado com sucesso"
-                formulario.reset(); // Limpa os campos
-            } catch (erro) {
-                console.error("Erro ao enviar:", erro);
-                alert("Erro ao conectar com o servidor.");
-            }
-        });
-
-        // 2. Busca os dados da rota GET /clientes do seu server.js
-        btnBuscar.addEventListener('click', async () => {
-            try {
-                const resposta = await fetch('http://localhost:3000/clientes');
-                const clientes = await resposta.json();
-
-                // Limpa a lista anterior e desenha os clientes na tela
-                divLista.innerHTML = '';
-                clientes.forEach(cli => {
-                    divLista.innerHTML += `<p><strong>Nome:</strong> ${cli.nome} - <strong>E-mail:</strong> ${cli.email}</p>`;
-                });
-            } catch (erro) {
-                console.error("Erro ao buscar:", erro);
-                alert("Erro ao buscar dados.");
-            }
-        });
-    </script>
+   
+<script src = 'clientes.js'></script>
 </body>
 </html>

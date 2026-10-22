@@ -22,11 +22,11 @@ db.connect((err) => {
 
 // Rota de Inserção (Cria a ponte de envio)
 app.post('/clientes', (req, res) => {
-    const { nome, email, senha, telefone } = req.body;
-    console.log("Dados recebidos:", nome, email, senha, telefone);
+    const { nome,telefone,cep, endereco, cpf,email,senha  } = req.body;
+    console.log("Dados recebidos:", nome,telefone,cep, endereco, cpf,email,senha);
     // O comando SQL abaixo insere os dados recebidos na tabela
-    const sql = "INSERT INTO clientes (nome, email, senha, telefone) VALUES (?, ?, ?, ? )";
-    db.query(sql, [nome, email, senha, telefone], (err, result) => {
+    const sql = "INSERT INTO clientes (nome, telefone ,cep, endereco, cpf, email,senha) VALUES (?, ?, ?, ?,?,?,?)";
+    db.query(sql, [nome, telefone ,cep, endereco, cpf, email,senha], (err, result) => {
         if (err) return res.status(500).send(err);
         res.send("Cadastrado com sucesso");
     });

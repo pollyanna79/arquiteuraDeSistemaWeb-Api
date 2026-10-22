@@ -1,0 +1,160 @@
+/* Configurações globais e centralização adaptável */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Evita cortar o topo em telas pequenas */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Container principal (estilo cartão responsivo) */
+.container {
+    background-color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px; /* Expandido ligeiramente para acomodar tabelas */
+    box-sizing: border-box;
+    margin: auto; /* Garante centralização perfeita */
+}
+
+/* Títulos */
+h1, h2 {
+    color: #333333;
+    text-align: center;
+    margin-bottom: 15px;
+    word-wrap: break-word;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 25px;
+}
+
+/* Estilização dos campos de input */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #27aecf;
+    outline: none;
+    box-shadow: 0 0 5px rgba(39, 174, 207, 0.3);
+}
+
+/* Estilização dos Botões */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0a4b47;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #073835;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Containers de Listas / Tabelas */
+#listaClientes, #produtos_mercearia {
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto; /* Adiciona barra de rolagem lateral apenas na tabela se a tela for muito pequena */
+}
+
+/* Estilização da Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #ddd;
+    word-break: break-word;
+}
+
+th {
+    background-color: #1ee2c8;
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Ajustes responsivos para celulares muito pequenos (abaixo de 480px) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: auto;
+    
+    /* Faz com que o título, botão e tabela fiquem em cima uns dos outros */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+}
+
+/* Espaçamento opcional para o botão não colar no título */
+#mercearia {
+    margin-bottom: 15px;
+}

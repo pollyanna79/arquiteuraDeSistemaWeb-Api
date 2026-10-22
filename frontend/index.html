@@ -14,22 +14,29 @@
         <form>
        <input type="text" name="nome" size="20" placeholder="Digite seu nome">
        <br>
+        <input type="number" name="telefone" size="20" placeholder="Digite seu telefone">
+       <br>
+          <input type="number" name="cep" size="20" placeholder="Digite seu cep">
+       <br>
+        <input type="text" name="endereco" size="20" placeholder="Digite seu Endereço">
+       <br>
+        <input type="number" name="cpf" size="20" placeholder="Digite seu cpf">
+       <br>
          <input type="email" name="email" size="20" placeholder="Digite seu email">
         <br>
         <input type="password" name="senha" maxlength="10" placeholder="Digite sua senha">
         <br>
-        <input type="number" name="telefone" maxlength="13" placeholder="Digite seu telefone">
-        <br>
+    
         <button type="submit">Enviar ao banco de dados </button>
         </form>
         <div class="response">
-            <h2>Recebendo informações do banco:</h2>
+            <h2>Consulta de Clientes:</h2>
             
-            <button type="button">Buscar dados do banco de dados</button>
+            <button type="button"id="btnBuscar">Buscar dados do banco de dados</button>
 <div id="listaClientes"></div>
         </div>
     </div>
-    <script src="serverbanco.js"></script>
-    <script src="server.js"></script>
+    <script src="clientes.js"></script>
+
 </body>
 </html>

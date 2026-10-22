@@ -1,6 +1,7 @@
 // Captura o formulário pelo elemento
 const form = document.getElementById('meuFormulario');
-const lista = document.querySelector('#corpo-tabela');
+const lista = document.querySelector('#listaClientes'); // Identificando a tag que vai armazenar os dados que vem do banco//
+const botao = document.querySelector('#btnBuscar');
 const btnLimparlista = document.getElementById('limpaLista');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -34,45 +35,23 @@ form.addEventListener('submit', async (e) => {
         alert('Erro de conexão com o servidor');
     }
 });
-btnLimparlista.addEventListener('click', () => {
-    lista.innerHTML = '';
-});
-
-// 2. Buscando dados (GET)
-<<<<<<< HEAD
-const btnBuscar = document.querySelector('button[type="button"]'); //Identificando o Botão que vai solicitar a informação ao banco
- // Identificando a tag que vai armazenar os dados que vem do banco//
-=======
-
-const lista = document.querySelector('#listaClientes'); // Identificando a tag que vai armazenar os dados que vem do banco//
-const botao = document.querySelector('#btnBuscar');
->>>>>>> polly
-//função que vai tazer e formatar a informação //
 botao.addEventListener('click', async () => {
     try {
-    const resposta = await fetch('http://localhost:3000/clientes');
-    const dados = await resposta.json();
+        const resposta = await fetch('http://localhost:3000/clientes');
 
-    // Limpa a lista antes de adicionar novos dados
-    lista.innerHTML = '';
-<<<<<<< HEAD
-    const tbody = document.getElementById('corpo-tabela');
-    dados.forEach(cliente => {
-const tr = document.createElement('tr');
+        // Se o servidor retornar erro (404, 500, etc.), ele lança uma exceção antes de tentar ler como JSON
+        if (!resposta.ok) {
+            throw new Error(`Erro HTTP! status: ${resposta.status}`);
+        }
 
-    tr.innerHTML = `
-        <td>${cliente.nome}</td>
-        <td>${cliente.email}</td>
-        <td>${cliente.telefone}</td>
-    `;
+        const dados = await resposta.json();
 
-    tbody.appendChild(tr);
-});
-      
-=======
-    // Cria a estrutura da tabela
-    const tabela = document.createElement('table');
-    tabela.innerHTML = `
+        // Limpa a lista antes de adicionar novos dados
+        lista.innerHTML = '';
+
+        // Cria a estrutura da tabela
+        const tabela = document.createElement('table');
+        tabela.innerHTML = `
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -82,9 +61,11 @@ const tr = document.createElement('tr');
             </thead>
             <tbody></tbody>
         `;
+        
         const tbody = tabela.querySelector('tbody');
-    dados.forEach(cliente => {
-        const linha = document.createElement('tr');
+        
+        dados.forEach(cliente => {
+            const linha = document.createElement('tr');
             linha.innerHTML = `
                 <td>${cliente.nome}</td>
                 <td>${cliente.email}</td>
@@ -95,9 +76,16 @@ const tr = document.createElement('tr');
 
         // Adiciona a tabela pronta dentro do elemento 'lista'
         lista.appendChild(tabela);
-        } catch (erro) {
+
+    } catch (erro) {
         console.error("Erro ao buscar dados:", erro);
-        lista.innerHTML = '<p style="color: red;">Não foi possível carregar os dados.</p>';
+        lista.innerHTML = '<p style="color: red;">Não foi possível carregar os dados. Verifique se o servidor backend está ligado na porta 3000.</p>';
     }
->>>>>>> polly
 });
+
+
+
+btnLimparlista.addEventListener('click', () => {
+    lista.innerHTML = '';
+});
+

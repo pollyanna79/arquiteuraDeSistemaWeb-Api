@@ -4,30 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="rodando.css">
-    
-    
     <title>Rodando o Banco</title>
 </head>
 <body>
     <div class="container">
         <h1>Enviando dados ao banco</h1>
-        <form>
-       <input type="text" name="nome" size="20" placeholder="Digite seu nome">
-       <br>
-         <input type="email" id="email" name="email" size="30" placeholder="Digite seu email">
-        <br>
-        <input type="password" id="senha" name="senha" maxlength="12" placeholder="Digite sua senha">
-        <br>
-        <input type="number" name="telefone" maxlength="13" placeholder="Digite seu telefone">
-        <br>
-        <button type="submit">Enviar ao banco de dados </button>
+        
+        <!-- Adicionado o ID 'meuFormulario' para bater com o JavaScript -->
+        <form id="meuFormulario">
+            <input type="text" name="nome" size="20" placeholder="Digite seu nome">
+            <br>
+            <!-- Corrigido de 'telefone' para 'tel' -->
+            <input type="tel" name="telefone" size="20" placeholder="Digite seu telefone">
+            <br>
+            <input type="number" name="cep" maxlength="13" placeholder="Digite seu cep">
+            <br>
+            <input type="text" name="endereco" maxlength="20" placeholder="Digite seu Endereço">
+            <br>
+            <input type="number" name="cpf" maxlength="13" placeholder="Digite seu cpf">
+            <br>
+            <input type="email" id="email" name="email" size="30" placeholder="Digite seu email">
+            <br>
+            <input type="password" id="senha" name="senha" maxlength="12" placeholder="Digite sua senha">
+            <br>
+            <button type="submit">Enviar ao banco de dados</button>
         </form>
+
         <div class="response">
             <h2>Consulta de Clientes:</h2>
             
-            <button type="button">Buscar dados do banco de dados</button>
-<div id="listaClientes"></div>
+            <!-- Adicionado o ID 'btnBuscar' -->
+            <button type="button" id="btnBuscar">Buscar dados do banco de dados</button>
+            
+           
+          
+            
+          
         </div>
+          <div id="listaClientes"></div>
+           <!-- Adicionado o botão 'limpaLista' que o seu JS tenta capturar -->
+            <button type="button" id="limpaLista" style="background-color: #c0392b; margin-top: 8px;">Limpar Lista</button>
     </div>
 
     <script src="clientes.js"></script>

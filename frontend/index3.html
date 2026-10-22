@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Vendas - SQL Server</title>
+    <link rel="stylesheet" href="rodando.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Vendedores</h1>
+        <button id="carregarBtn">Carregar Vendedores</button>
+        
+        <table border="1" style="margin-top: 20px; width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>ID Vendedor</th>
+                    <th>Nome</th>
+                    <th>Vendas</th>
+                    <th>Região</th>
+                </tr>
+            </thead>
+            <tbody id="tabela-vendedores">
+                <!-- Os dados da API vão aparecer aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="vendas.js"></script>
+</body>
+</html>

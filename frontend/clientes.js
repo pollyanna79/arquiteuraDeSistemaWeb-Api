@@ -7,9 +7,13 @@ form.addEventListener('submit', async (e) => {
 
     const dados = {
         nome: form.querySelector('input[name="nome"]').value,
+        telefone: form.querySelector('input[name="telefone"]').value,
+        cep: form.querySelector('input[name="cep"]').value,
+        endereco: form.querySelector('input[name="endereco"]').value,
+        cpf: form.querySelector('input[name="cpf"]').value,
         email: form.querySelector('input[name="email"]').value,
-        senha: form.querySelector('input[name="senha"]').value,
-        telefone: form.querySelector('input[name="telefone"]').value
+        senha: form.querySelector('input[name="senha"]').value
+        
     };
 
     try {
@@ -35,15 +39,23 @@ btnLimparlista.addEventListener('click', () => {
 });
 
 // 2. Buscando dados (GET)
+<<<<<<< HEAD
 const btnBuscar = document.querySelector('button[type="button"]'); //Identificando o Botão que vai solicitar a informação ao banco
  // Identificando a tag que vai armazenar os dados que vem do banco//
+=======
+
+const lista = document.querySelector('#listaClientes'); // Identificando a tag que vai armazenar os dados que vem do banco//
+const botao = document.querySelector('#btnBuscar');
+>>>>>>> polly
 //função que vai tazer e formatar a informação //
-btnBuscar.addEventListener('click', async () => {
+botao.addEventListener('click', async () => {
+    try {
     const resposta = await fetch('http://localhost:3000/clientes');
     const dados = await resposta.json();
 
     // Limpa a lista antes de adicionar novos dados
     lista.innerHTML = '';
+<<<<<<< HEAD
     const tbody = document.getElementById('corpo-tabela');
     dados.forEach(cliente => {
 const tr = document.createElement('tr');
@@ -57,4 +69,35 @@ const tr = document.createElement('tr');
     tbody.appendChild(tr);
 });
       
+=======
+    // Cria a estrutura da tabela
+    const tabela = document.createElement('table');
+    tabela.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        `;
+        const tbody = tabela.querySelector('tbody');
+    dados.forEach(cliente => {
+        const linha = document.createElement('tr');
+            linha.innerHTML = `
+                <td>${cliente.nome}</td>
+                <td>${cliente.email}</td>
+                <td>${cliente.telefone}</td>
+            `;
+            tbody.appendChild(linha);
+        });
+
+        // Adiciona a tabela pronta dentro do elemento 'lista'
+        lista.appendChild(tabela);
+        } catch (erro) {
+        console.error("Erro ao buscar dados:", erro);
+        lista.innerHTML = '<p style="color: red;">Não foi possível carregar os dados.</p>';
+    }
+>>>>>>> polly
 });

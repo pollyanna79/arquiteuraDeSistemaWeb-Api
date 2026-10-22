@@ -8,10 +8,10 @@ app.use(cors());
 app.use(express.json());
 console.log(process.env.DB_NAME);
 const db = mysql.createConnection({
-    host: process.env.DB_Host,
-    user: process.env.DB_Usuario,
-    password: process.env.DB_senha,
-    database: process.env.DB_TABELA,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10, // Quantidade máxima de conexões simultâneas
     queueLimit: 0
